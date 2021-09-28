@@ -6,15 +6,77 @@ const app = express();
 const Server = require('http').createServer(app);
 const io = require("socket.io")(Server);
 
-
-
-
 const UUID =  require('uuid').v4;
 const { composeGame } = require('./utils/Game/ComposeGame');
 const cors = require('cors');
+const { env } = require('./env');
 
 app.use(cors({origin : '*'}));
 app.use(express.json());
+
+
+app.get('/clean', async (req, res) => {
+    try {
+
+        //clean everything that are not in running rooms and players cound = 0
+
+        GameMap.forEach((roomId, players) => {
+            if(runningRooms.has(roomId)&& players.length === 0 || players.length === 0 && !runningRooms.has(roomId)) {
+                if(runningRooms.has(roomId)) {
+                    runningRooms.delete(roomId);
+                }
+                if(players.length === 0) {
+                    GameMap.delete(roomId);
+                }
+            }
+        });
+
+
+        composedGame.forEach((roomId, game)=> {
+            if(!GameMap.has(roomId)) {
+                composedGame.delete(roomId);
+            }
+        })
+        roundMap.forEach((roomId, game)=> {
+            if(!GameMap.has(roomId)) {
+                roundMap.delete(roomId);
+            }
+        });
+
+        res.status(200).send({info: 'Clean-up finished!'});
+    }
+    catch(e) {
+        if(env === 'DEV')   console.log("ERROR /ROOM : " +e);
+        res.status(500).send({error: e});
+    }
+});
+
+
+
+app.get('/health', async (req, res) => {
+
+    try{
+
+        const used = await process.memoryUsage().heapUsed / 1024 / 1024;
+        const ram = Math.round(used * 100) / 100 ;
+        const RAM = `${Math.round(used * 100) / 100} MB`;
+
+        const health =  {
+                            ramUsage : RAM,
+                            runningRooms: runningRooms.size,
+                            openQueueSize: openQueue.length,
+                            composedGameSize: composedGame.size,
+                            gameMapSize: GameMap.size,
+                            info: ram < 500 ? 'GOOD: Everything looks Good!' : 'WARNING : Ram usage alert!'
+                        };
+        res.status(200).send(health);
+    }
+    catch(e) {
+        if(env === 'DEV')   console.log("ERROR /ROOM : " +e);
+        res.status(500).send({error: e});
+    }
+
+});
 
 
 app.post('/room', async (req, res) => {
@@ -44,7 +106,7 @@ app.post('/room', async (req, res) => {
             res.status(200).send({roomId: roomId, players: players});
         }
         catch(e) {
-            console.log("ERROR /ROOM : " +e);
+            if(env === 'DEV')   console.log("ERROR /ROOM : " +e);
             res.status(500).send({roomId: null, players: null});
         }
 
@@ -76,7 +138,7 @@ app.post('/room/:id', async (req, res) => {
             }
         }
         catch(e) {
-            console.log("LOG : ERROR /room/:id : "+e);
+            if(env === 'DEV')   console.log("LOG : ERROR /room/:id : "+e);
             res.status(500).send({roomId: null, players: null});
         }
     });
@@ -96,23 +158,28 @@ app.post('/join-random', async (req, res) => {
     
             let size = openQueue.length;
             let roomToJoin = null;
+
+            let fullQueues = [];
     
-            for(let qi = 0; qi < size; qi++) {
-    
-                let roomId = openQueue[qi];
+            await openQueue.some(async (roomId)=> {
                 let room = GameMap.get(roomId);
-                if(room && room.length > 0 && room.length <= 12) {
+                if(env === 'DEV')   console.log("ROOM : "+ roomId+"  : " +JSON.stringify(room));
+                if(room && room.length > 0 && room.length < 12) {
                     roomToJoin = roomId;
-                    break;
+                    return false;
                 }
-                else if(room && room.length === 12) {
-                    let id = openQueue.shift();
-                    openQueue.push(id);
+                else if(room && room.length === 12){
+
+                    let ids = openQueue.shift();
+                    fullQueues.push(ids);
                 }
                 else {
                     openQueue.shift();
                 }
-            }
+            });
+
+            openQueue.concat(fullQueues);
+
     
             if(roomToJoin === null) {
                 let roomId = await generate();
@@ -143,7 +210,7 @@ app.post('/join-random', async (req, res) => {
             }
         }
         catch (e) {
-            console.log("LOG : ERROR /join-random : "+e);
+            if(env === 'DEV')   console.log("LOG : ERROR /join-random : "+e);
             res.status(500).send({roomId: null, player: null});
         }
 });
@@ -162,7 +229,7 @@ io.on('connection', function (socket) {
 
         try {
 
-        console.log("JOINED");
+        if(env === 'DEV')   console.log("JOINED");
         socket.join(data.roomId);
         socket.playerId = data.playerId;
         socket.roomId = data.roomId;
@@ -178,23 +245,22 @@ io.on('connection', function (socket) {
         io.to(data.roomId).emit('join-room', {msg: 'YOU JOINED', players: GameMap.get(data.roomId), gameStarted: false});
         }
         catch (e) {
-            console.log("LOG : ERROR-SOCKET-JOIN  : "+e);
+            if(env === 'DEV')   console.log("LOG : ERROR-SOCKET-JOIN  : "+e);
             io.to(data.roomId).emit('join-room', {msg: 'Unable to join', players: [] });
         }
    });
 
    socket.on('send', (data)=> {
-    //    console.log("MESSAGE : "+data.msg + "FROM : "+data.roomId );
        io.to(data.roomId).emit('message', {msg: data.msg});
    });
 
    socket.on('disconnect', async (data)=> {
 
         try {
-            console.log("DISCONNECT");
+            if(env === 'DEV')   console.log("DISCONNECT");
 
             if(socket.playerId && socket.roomId && GameMap.get(socket.roomId)) {
-                console.log("DISCONNECTED : "+socket.playerId);
+                if(env === 'DEV')   console.log("DISCONNECTED : "+socket.playerId);
             
                 let players = GameMap.get(socket.roomId);
                 let wasAdmin = false;
@@ -223,7 +289,7 @@ io.on('connection', function (socket) {
             }
         }
         catch (e) {
-            console.log("LOGGER : DISCONNECT : ERROR : "+ e);
+            if(env === 'DEV')   console.log("LOGGER : DISCONNECT : ERROR : "+ e);
         }
     });
 
@@ -239,7 +305,6 @@ io.on('connection', function (socket) {
             let milliSeconds = parseInt(((hrtime[0] * 1e3) + (hrtime[1]) * 1e-6));
 
             let startTime = milliSeconds/1000;
-            // console.log('milliSeconds: ' + Math.floor(milliSeconds/1000));
 
             if(open) {
                 openQueue.push(roomId);
@@ -252,7 +317,7 @@ io.on('connection', function (socket) {
             io.to(roomId).emit('start-game', {start: true, game: game});
         }
         catch (e) {
-            console.log("LOGGER : GAME-START : ERROR : "+ e);
+            if(env === 'DEV')   console.log("LOGGER : GAME-START : ERROR : "+ e);
         }
     });
 
@@ -262,7 +327,7 @@ io.on('connection', function (socket) {
             io.to(data.roomId).emit('room-chat', {from:data.from, playerId:data.playerId, message:data.content});
         }
         catch (e) {
-            console.log("LOGGER : CHAT : ERROR : "+ e);
+            if(env === 'DEV')   console.log("LOGGER : CHAT : ERROR : "+ e);
         }
     });
 
@@ -275,16 +340,16 @@ io.on('connection', function (socket) {
             let playerId = data.playerId;
             let point = data.points;
 
-            // console.log("points to be added : "+ point +" player-id "+playerId);
+            // if(env === 'DEV')    console.log("points to be added : "+ point +" player-id "+playerId);
 
             let players = GameMap.get(roomId);
-            // console.log("players : "+ JSON.stringify(players));
+            // if(env === 'DEV')    console.log("players : "+ JSON.stringify(players));
 
             if(players)
                 await players.map((player)=>{
                     if(player.playerId === playerId) {
                         player.score += point;
-                        // console.log("updated player : "+ JSON.stringify(player));
+                        // if(env === 'DEV')    console.log("updated player : "+ JSON.stringify(player));
                     }
                 });
 
@@ -293,7 +358,7 @@ io.on('connection', function (socket) {
             
         }
         catch (e) {
-            console.log("LOGGER : UPDATE-SCORE : ERROR : "+ e);
+            if(env === 'DEV')   console.log("LOGGER : UPDATE-SCORE : ERROR : "+ e);
         }
 
         
@@ -321,7 +386,7 @@ io.on('connection', function (socket) {
             io.to(data.roomId).emit('join-random', { players: players, game: composedGame.get(data.roomId), currentRound: round, skipTime: skipTime});
         }
         catch (e) {
-            console.log("LOGGER : JOIN-RANDOM : ERROR : "+ e);
+            if(env === 'DEV')   console.log("LOGGER : JOIN-RANDOM : ERROR : "+ e);
         }
 
     });
@@ -345,7 +410,7 @@ io.on('connection', function (socket) {
 
         }
         catch (e) {
-            console.log("LOGGER : UPDATE-ROUND : ERROR : "+ e);
+            if(env === 'DEV')   console.log("LOGGER : UPDATE-ROUND : ERROR : "+ e);
         }
 
 
