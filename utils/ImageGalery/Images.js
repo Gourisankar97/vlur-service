@@ -1,42 +1,72 @@
-exports.Images = [{name: 'dog'              ,hint: 'your friendly pet'                          ,link: 'https://travel.home.sndimg.com/content/dam/images/travel/fullrights/2019/2/25/0/American_Kennel_Club_Golden-Retriever-On-White-05.jpg.rend.hgtvcom.966.644.suffix/1551125068729.jpeg'}
-                ,{name: 'lotus'             ,hint: 'flower on the pond'                         ,link: 'https://www.myareayoga.com/wp-content/uploads/2020/10/1200-6965-lotus-flower-photo1.jpg'}
-                ,{name: 'audi'              ,hint: 'luxury car brand'                           ,link: 'https://www.audi.com/content/dam/gbp2/company/profile/participations-and-services/1920x1080-participations-services.jpg?imwidth=719&imdensity=1'}
-                ,{name: 'rabbit'            ,hint: 'faster than turtle :)'                      ,link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpQxwtbksSvMljtSmvdNDLx4iIxu99J0sIuQ&usqp=CAU'}
-                ,{name: 'mickey mouse'      ,hint: 'famous cartoon character'                   ,link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTf2TmYBOGLkluUeNMUFfV_WOP6mkyPoZOu685VWgokbYGRYNU0Fm6ZIRjkUJAUgBpIZPE&usqp=CAU'}
-                ,{name: 'donald duck'       ,hint: 'famous cartoon character'                   ,link: 'https://nationaltoday.com/wp-content/uploads/2021/06/donald_duck.jpg'}
-                ,{name: 'batman'            ,hint: 'super hero'                                 ,link: 'https://www.hollywoodreporter.com/wp-content/uploads/2021/06/M2DBAFO_EC002-H-2021.jpg?w=681&h=383&crop=1'}
-                ,{name: 'facebook'          ,hint: 'social media'                               ,link: 'https://5thvoice.news/kkg_admin/images/categoryimages/16082925451.png'}
-                ,{name: 'lemon'             ,hint: 'citrus'                                     ,link: 'https://solidstarts.com/wp-content/uploads/Lemon_edited-480x320.jpg'}
-                ,{name: 'whale'             ,hint: 'largest on earth'                           ,link: 'https://media.nationalgeographic.org/assets/photos/000/216/21648.jpg'}
-                ,{name: 'egg'               ,hint: 'who came first :)'                          ,link: 'https://teleskola.mt/wp-content/uploads/2020/06/top-view-eggs-grey-cloth_23-2148302886-c6acb4c3a99be89dab079a519f20f32f.jpg'}
-                ,{name: 'rat'               ,hint: 'cat loves them'                             ,link: 'https://a-z-animals.com/media/rat-4.jpg'}
-                ,{name: 'key'               ,hint: 'tool for unlock'                            ,link: 'https://thumbs.dreamstime.com/b/key-bunch-18031693.jpg'}
-                ,{name: 'mirror'            ,hint: 'reflection'                                 ,link: 'https://t4.ftcdn.net/jpg/02/16/20/51/360_F_216205190_lRCHcyh4taujXsaeFHbnCMOdHRVN9qNl.jpg'}
-                ,{name: 'foot ball'         ,hint: 'let\'s play'                                ,link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBMkk0ZGISBKqg3PsG1x1Q7mlWz4uoMNMuHHSKKnaFwOucGu-9Q7FWadm20ytgKI200Ig&usqp=CAU'}
-                ,{name: 'fruits'            ,hint: 'morning healthy food'                       ,link: 'https://i.swncdn.com/media/800w/cms/CW/faith/47975-fruit-basket-pexels-1200.1200w.tn.jpg'}
-                ,{name: 'basketball'        ,hint: 'let\'s play'                                ,link: 'https://3gz8cg829c.execute-api.us-west-2.amazonaws.com/prod/image-renderer/16x9/full/1015/center/80/70ecebd2-c7a4-4115-af4f-a38a51a263e0-large16x9_ohiostatebasketball2.jpg'}
-                ,{name: 'broccoli'          ,hint: 'vegetable, you may not like'                ,link: 'https://img.thrfun.com/img/008/394/fresh_broccoli_on_a_white_background_x.jpg'}
-                ,{name: 'frog'              ,hint: 'snakes favorite'                            ,link: 'https://media.istockphoto.com/photos/green-frog-isolated-on-white-picture-id859715416?k=20&m=859715416&s=612x612&w=0&h=I83BzwKLE7qBfOQY5wXDd_I0SOAVR1iivBx8qfKDpiI='}
-                ,{name: 'lamp'              ,hint: 'keep it on study table'                     ,link: 'https://media.istockphoto.com/photos/desk-lamp-on-white-background-photo-with-clipping-path-picture-id947334652?k=20&m=947334652&s=612x612&w=0&h=MNXH6zIL7ps14K0NydzaALr66ljobX3WC3hyl8_g9pE='}
-                ,{name: 'hammer'            ,hint: 'Thor\'s weapon'                             ,link: 'https://www.eastmanhandtools.com/upload/final_pro/big_img/2445.jpg'}
-                ,{name: 'phone'             ,hint: 'you can\'t live whitout'                    ,link: 'https://guide-images.cdn.ifixit.com/igi/o4OjCNmNeOhvsS1P.large'}
-                ,{name: 'radio'             ,hint: 'transmission'                               ,link: 'https://images.philips.com/is/image/PhilipsConsumer/TAPR802_98-IMS-en_ZA?wid=420&hei=360&$jpglarge$'}
-                ,{name: 'watch'             ,hint: 'makes you be on time'                       ,link: 'https://static.toiimg.com/thumb/resizemode-4,width-400,msid-84430064/84430064.jpg'}
-                ,{name: 'shirt'             ,hint: 'you must be wearing it'                     ,link: 'https://static01.nyt.com/images/2013/09/22/magazine/22wmt/22wmt-articleLarge-v2.jpg?quality=75&auto=webp&disable=upscale'}
-                ,{name: 'candy'             ,hint: 'kids love these'                            ,link: 'https://nationaltoday.com/wp-content/uploads/2020/11/National-Candy-Day-1-640x514.jpg'}
-                ,{name: 'lollipop'          ,hint: 'kids love these'                            ,link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiKCXG2VR89YOAFK101mQTxakKZd6aZJMtc3OWHHFmggcaT7UC6SYMX6tHZG8SeA3DhTs&usqp=CAU'}
-                ,{name: 'rainbow'           ,hint: 'appears when it rains with sun light'       ,link: 'https://pbs.twimg.com/profile_images/1416144689615544324/11oBuptg.jpg'}
-                ,{name: 'ice'               ,hint: 'too cold to handle'                         ,link: 'https://cdn.britannica.com/09/162509-131-9D36AD0E/Ice-cubes-background.jpg'}
-                ,{name: 'scissor'           ,hint: 'pen paper -'                                ,link: 'https://www.ikonicworld.com/pub/media/catalog/product/i/k/ikonic_scissor_ik-n55_1.jpg'}
-                ,{name: 'shoe'              ,hint: 'footwear'                                   ,link: 'https://www.saucony.com/on/demandware.static/-/Sites-saucony_us-Library/default/dw37eca82f/content/seasonal-content/homepage/2021/08/12/images/best-sellers/endorphinshift2-d.jpg'}
-                ,{name: 'eye'               ,hint: 'you can see'                                ,link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAZ9VCfSKMmnj2iOHngaSzoYz-yQ_H3NPVFXcMd_ZZbx7jGOId_JWrpPg8my0WLQzHuJQ&usqp=CAU'}
-                ,{name: 'hanger'            ,hint: 'put your jacket on -'                       ,link: 'https://www.homestratosphere.com/wp-content/uploads/2018/06/way-wooden-clothes-hanger-061818.jpg'}
-                ,{name: 'plate'             ,hint: 'take your food on -'                        ,link: 'https://media.istockphoto.com/photos/yellow-pastel-plate-isolated-on-white-background-picture-id1068359374?k=20&m=1068359374&s=612x612&w=0&h=n-pbUXsHrZLyBpR6Qxv6mVep8ebRnJEPqn4Din8GDXw='}
-                ,{name: 'battery'           ,hint: 'charge it'                                  ,link: 'https://www.sueddeutsche.de/image/sz.1.5375747/1200x675?v=1630353967'}
-                ,{name: 'clock'             ,hint: 'makes you punctual (may be)'                ,link: 'https://3dwarehouse.sketchup.com/warehouse/v1.0/publiccontent/b1f3a3a4-de4a-41bf-a5f7-e98844b65fc8'}
-                ,{name: 'piano'             ,hint: 'musical instrument'                         ,link: 'https://www.musikalessons.com/blog/wp-content/uploads/2017/06/grand-piano-.jpg'}
-                ,{name: 'bracelet'          ,hint: 'wrist wear'                                 ,link: 'https://i0.wp.com/cdn.caratlane.com/media/catalog/product/cache/6/image/480x480/9df78eab33525d08d6e5fb8d27136e95//U/T/UT00096-2Y0000_11_listfront.jpg'}
-            ];
+exports.Images = [{name: 'bag',              hint: 'carry anything',                         link: 'https://i.ibb.co/6FVnGpz/bag.jpg'}
+                ,{name: 'baloon',           hint: 'birthday special' ,                      link: 'https://i.ibb.co/jwNH5Rt/baloon.png'}
+                ,{name: 'banana',           hint: 'yellow fruit' ,                          link: 'https://i.ibb.co/FBBzSwG/banana.jpg'}
+                ,{name: 'baseball',         hint: 'hit the fast ball' ,                     link: 'https://i.ibb.co/6tHmb3x/baseball.jpg'}
+                ,{name: 'basketball',       hint: 'lets play' ,                             link: 'https://i.ibb.co/fMZsvvb/basketball.jpg'}
+                ,{name: 'bear',             hint: 'honey lover' ,                           link: 'https://i.ibb.co/BCnTpCD/bear.jpg'}
+                ,{name: 'boat',             hint: 'small water vehicle',                    link: 'https://i.ibb.co/jGvp0gt/boat.jpg'}
+                ,{name: 'book',             hint: 'knowledge bank' ,                        link: 'https://i.ibb.co/r6cfBvx/book.jpg'}
+                ,{name: 'bottle',           hint: 'water container' ,                       link: 'https://i.ibb.co/Q6cf2bg/bottle.jpg'}
+                ,{name: 'bread',            hint: 'sandwich' ,                              link: 'https://i.ibb.co/6YXJmtQ/bread.jpg'}
+                ,{name: 'brinjal',          hint: 'purple veg' ,                            link: 'https://i.ibb.co/0mBfJYG/brinjal.jpg'}
+                ,{name: 'button',           hint: 'stick on shirts' ,                       link: 'https://i.ibb.co/3TM1Z6J/button.jpg'}
+                ,{name: 'cap',              hint: 'head wear' ,                             link: 'https://i.ibb.co/h9dN4cY/cap.jpg'}
+                ,{name: 'candy',            hint: 'kid\'s favourite' ,                      link: 'https://i.ibb.co/g9b0B42/candy.jpg'}
+                ,{name: 'carrot',           hint: 'bunny\'s favourite',                     link: 'https://i.ibb.co/BqXJCQq/Bunch-of-carrots-with-tops-against-white-background-Bebop-Level-1.jpg'}
+                ,{name: 'clamp',            hint: 'door fitting' ,                          link: 'https://i.ibb.co/YNQ0Rkq/clamp.jpg'}
+                ,{name: 'cookie',           hint: 'grand ma\'s special' ,                   link: 'https://i.ibb.co/fxyCVRv/cookie.jpg'}
+                ,{name: 'cow boy',          hint: 'horse rider' ,                           link: 'https://i.ibb.co/RBjch1c/cow-boy.jpg'}
+                ,{name: 'cucumber',         hint: 'fresh' ,                                 link: 'https://i.ibb.co/Pmy7hwS/cucumber.jpg'}
+                ,{name: 'dinosaur',         hint: 'extinct' ,                               link: 'https://i.ibb.co/r2VPhNS/dinosaur.jpg'}
+                ,{name: 'drop',             hint: 'small water quantity',                   link: 'https://i.ibb.co/P9vDGwh/drop.jpg'}
+                ,{name: 'dove',             hint: 'little pigeon' ,                         link: 'https://i.ibb.co/P4sskpV/dove.jpg'}
+                ,{name: 'egg',              hint: 'who came first :)' ,                     link: 'https://i.ibb.co/sWYyjZJ/egg.jpg'}
+                ,{name: 'elephant',         hint: 'largest on land' ,                       link: 'https://i.ibb.co/hDJQdKw/elephant.jpg'}
+                ,{name: 'fish',             hint: 'who\'s life is water?' ,                 link: 'https://i.ibb.co/80PDsdN/fish.jpg'}
+                ,{name: 'fork',             hint: 'spikes on spoon' ,                       link: 'https://i.ibb.co/KKnyf4T/fork.jpg'}
+                ,{name: 'goat',             hint: 'mehhh mehhh' ,                           link: 'https://i.ibb.co/bXnnGSM/goad.png'}
+                ,{name: 'hair brush',       hint: 'hair groomer' ,                          link: 'https://i.ibb.co/JFLN2jf/hair-brush.jpg'}
+                ,{name: 'hamster',          hint: 'big nose mouse' ,                        link: 'https://i.ibb.co/6FHJPZd/hamster.jpg'}
+                ,{name: 'icecream',         hint: 'Every one loves it on hot summer :)' ,   link: 'https://i.ibb.co/ZHRdkmP/icecream.jpg'}
+                ,{name: 'jar',              hint: 'container' ,                             link: 'https://i.ibb.co/H7Hr8br/jar.jpg'}
+                ,{name: 'keyboard',         hint: 'typing' ,                                link: 'https://i.ibb.co/42MzccJ/keyboard.jpg'}
+                ,{name: 'knife',            hint: 'sharpe cut' ,                            link: 'https://i.ibb.co/VqHTVMK/knife.jpg'}
+                ,{name: 'lamp',             hint: 'keep it on your study table' ,           link: 'https://i.ibb.co/B6BmXVk/lamp.jpg'}
+                ,{name: 'lipstick',         hint: 'ledies\' thing' ,                        link: 'https://i.ibb.co/brQxTcH/lipstick.jpg'}
+                ,{name: 'milk',             hint: 'cow' ,                                   link: 'https://i.ibb.co/51zb5zn/milk.jpg'}
+                ,{name: 'mop',              hint: 'floor cleaner' ,                         link: 'https://i.ibb.co/VD858Gb/mop.jpg'}
+                ,{name: 'needle',           hint: 'Everyone afraid of it' ,                 link: 'https://i.ibb.co/HTzXWp0/needle.jpg'}
+                ,{name: 'newspaper',        hint: 'updates on whats happening' ,            link: 'https://i.ibb.co/fXKFGxp/newspaper.jpg'}
+                ,{name: 'paint',            hint: 'colour' ,                                link: 'https://i.ibb.co/nLTFsFb/paint.jpg'}
+                ,{name: 'phone',            hint: 'smart' ,                                 link: 'https://i.ibb.co/xCBFCyN/phone.jpg'}
+                ,{name: 'pencil',           hint: 'erasable' ,                              link: 'https://i.ibb.co/9pp6jzg/pencil.png'}
+                ,{name: 'ring',             hint: 'will you Marry me' ,                     link: 'https://i.ibb.co/VTsyMHv/ring.jpg'}
+                ,{name: 'rope',             hint: 'life saver' ,                            link: 'https://i.ibb.co/syRhbPt/rope.png'}
+                ,{name: 'sail boat',        hint: 'boat on wind force' ,                    link: 'https://i.ibb.co/5r0WpfN/sailboat.jpg'}
+                ,{name: 'shark',            hint: 'dangerous big fish' ,                    link: 'https://i.ibb.co/DRnJ4QN/shark.jpg'}
+                ,{name: 'sheep',            hint: 'ba ba black ..' ,                        link: 'https://i.ibb.co/Y0RfvS8/Sheep-in-nature-on-meadow-looking-at-camera-on-green-background.jpg'}
+                ,{name: 'shell',            hint: 'snails shield' ,                         link: 'https://i.ibb.co/qxgsv3j/shell.jpg'}
+                ,{name: 'ship',             hint: 'huge boat' ,                             link: 'https://i.ibb.co/D5CNS94/ship.jpg'}
+                ,{name: 'slipper',          hint: 'foot wear' ,                             link: 'https://i.ibb.co/5h7Thq1/slipper.jpg'}
+                ,{name: 'snail',            hint: 'slug types' ,                            link: 'https://i.ibb.co/4K57Qgb/snail.jpg'}
+                ,{name: 'soap',             hint: 'bath bar' ,                              link: 'https://i.ibb.co/fpvXpPM/soap.jpg'}
+                ,{name: 'sofa',             hint: 'seat' ,                                  link: 'https://i.ibb.co/nLn6czd/sofa.jpg'}
+                ,{name: 'speaker',          hint: 'base sound' ,                            link: 'https://i.ibb.co/VpNvVQd/speaker.jpg'}
+                ,{name: 'star fish',        hint: 'water creature' ,                        link: 'https://i.ibb.co/0VRwMC4/star-fish.jpg'}
+                ,{name: 'sugar cane',       hint: 'sweet' ,                                 link: 'https://i.ibb.co/NCVh2K2/sugar-cane.jpg'}
+                ,{name: 'sun glasses',      hint: 'eye protector from sun' ,                link: 'https://i.ibb.co/wSv1dTL/sun-glasses.jpg'}
+                ,{name: 'sunscreen',        hint: 'skin protector from sun' ,               link: 'https://i.ibb.co/PMd4bbh/sunscreen.jpg'}
+                ,{name: 'toilet',           hint: 'nature\'s call' ,                        link: 'https://i.ibb.co/NWv7zPg/toilet.jpg'}
+                ,{name: 'tomato',           hint: 'Ketchup' ,                               link: 'https://i.ibb.co/Dzz3wvM/tomato.jpg'}
+                ,{name: 'toothbrush',       hint: 'morning freshness tool' ,                link: 'https://i.ibb.co/qYvxm3K/Time-to-Replace-the-Old-Wornout-Toothbrush.jpg'}
+                ,{name: 'toothpaste',       hint: 'over brush' ,                            link: 'https://i.ibb.co/7tBWGqs/toothpaste.jpg'}
+                ,{name: 'truck',            hint: 'heavy vehicle' ,                         link: 'https://i.ibb.co/9wP09WJ/truck.jpg'}
+                ,{name: 'wallet',           hint: 'money purse' ,                           link: 'https://i.ibb.co/vs6hGzB/wallet.jpg'}
+                ,{name: 'washing machine',  hint: 'cloth cleaner' ,                         link: 'https://i.ibb.co/RyyZ924/washing-machine.jpg'}
+                ,{name: 'watch',            hint: 'time' ,                                  link: 'https://i.ibb.co/cbj5Hb6/watch.jpg'}
+                ,{name: 'water',            hint: 'life' ,                                  link: 'https://i.ibb.co/cvVCWsk/water.jpg'}
+
+];
 
 
 // {name: '',hint: '' ,link: ''}

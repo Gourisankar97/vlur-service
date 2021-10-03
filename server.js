@@ -20,8 +20,8 @@ app.get('/clean', async (req, res) => {
 
         //clean everything that are not in running rooms and players cound = 0
 
-        GameMap.forEach((roomId, players) => {
-            if(runningRooms.has(roomId)&& players.length === 0 || players.length === 0 && !runningRooms.has(roomId)) {
+        await GameMap.forEach((players, roomId) => {
+            if(players.length === 0) {
                 if(runningRooms.has(roomId)) {
                     runningRooms.delete(roomId);
                 }
@@ -32,12 +32,12 @@ app.get('/clean', async (req, res) => {
         });
 
 
-        composedGame.forEach((roomId, game)=> {
+        await composedGame.forEach((game, roomId)=> {
             if(!GameMap.has(roomId)) {
                 composedGame.delete(roomId);
             }
         })
-        roundMap.forEach((roomId, game)=> {
+        await roundMap.forEach((game, roomId)=> {
             if(!GameMap.has(roomId)) {
                 roundMap.delete(roomId);
             }
